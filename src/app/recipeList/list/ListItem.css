@@ -1,0 +1,20 @@
+.recipe-list__list-item {
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+}
+
+.recipe-list__list-item div {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.recipe-list__list-item .btn {
+  flex-basis: auto;
+  display: none;
+}
+.recipe-list__list-item:hover .btn {
+  display: initial;
+}
