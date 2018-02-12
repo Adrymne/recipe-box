@@ -1,5 +1,5 @@
 import React from 'react';
-import TextArea from 'components/TextArea';
+import EditTextArea from 'components/EditTextArea';
 
 // prettier-ignore
 const ingredients = `* 1tbsp honey
@@ -7,6 +7,8 @@ const ingredients = `* 1tbsp honey
 * 1l water
 `
 
-const Ingredients = () => <TextArea title="Ingredients" text={ingredients} />;
+const Ingredients = () => (
+  <EditTextArea title="Ingredients" text={ingredients} />
+);
 
 export default Ingredients;

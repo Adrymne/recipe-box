@@ -1,4 +1,4 @@
 #app-container > .row > .col {
   padding: 0;
-  height: 100vh;
+  height: calc(100vh - 15px);
 }
