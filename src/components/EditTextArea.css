@@ -1,0 +1,14 @@
+.text-edit {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.text-edit form {
+  flex-grow: 1;
+}
+
+.text-edit textarea {
+  flex-grow: 1;
+  border-radius: 0;
+  resize: none;
+}
