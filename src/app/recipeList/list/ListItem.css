@@ -1,4 +1,5 @@
 .recipe-list__list-item {
+  /* button height - prevent height from changing as button appears + disappears */
   min-height: 38px;
   display: flex;
   align-items: center;

@@ -1,17 +1,18 @@
 import React from 'react';
+import { Card } from 'reactstrap';
 import Search from './recipeList/Search';
 import List from './recipeList/List';
 import './RecipeList.css';
 
 const RecipeList = () => (
-  <div className="recipe-list">
+  <Card className="recipe-list">
     <div>
       <Search />
     </div>
     <div>
       <List />
     </div>
-  </div>
+  </Card>
 );
 
 export default RecipeList;
