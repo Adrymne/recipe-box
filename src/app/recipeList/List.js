@@ -13,6 +13,9 @@ const selectedRecipe = 2;
 
 const List = () => (
   <ListGroup className="recipe-list__list">
+    <ListGroupItem tag="button" action>
+      <i>New recipe...</i>
+    </ListGroupItem>
     {recipes.map(recipe => (
       <ListGroupItem key={recipe.id} active={recipe.id === selectedRecipe}>
         <ListItem recipe={recipe} />
