@@ -1,14 +1,13 @@
 import React from 'react';
 import { Row, Col } from 'reactstrap';
 import './Viewer.css';
+import RecipeHeader from './viewer/RecipeHeader';
 import Ingredients from './viewer/Ingredients';
 import Steps from './viewer/Steps';
 
-const recipe = { name: 'Japanese curry' };
-
 const Viewer = () => (
   <div className="viewer">
-    <h1>{recipe.name}</h1>
+    <RecipeHeader />
     <div>
       <hr />
     </div>
