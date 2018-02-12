@@ -3,6 +3,7 @@
   min-height: 38px;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .recipe-list__list-item div {
