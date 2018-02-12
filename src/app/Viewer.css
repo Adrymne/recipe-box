@@ -9,3 +9,6 @@
 .viewer .row {
   flex-grow: 1;
 }
+.viewer .col {
+  overflow: auto;
+}

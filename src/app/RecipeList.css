@@ -8,6 +8,8 @@
   justify-content: flex-start;
 
   border-radius: 0;
+
+  overflow: auto;
 }
 .recipe-list > div {
   margin: 5px;
