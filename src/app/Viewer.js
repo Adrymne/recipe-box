@@ -1,25 +1,15 @@
 import React from 'react';
-import { Row, Col } from 'reactstrap';
-import './Viewer.css';
-import RecipeHeader from './viewer/RecipeHeader';
-import Ingredients from './viewer/Ingredients';
-import Steps from './viewer/Steps';
+import { applySpec } from 'ramda';
+import { connect } from 'react-redux';
+import { getSelectedRecipeId } from 'store/selectors';
+import Recipe from './viewer/Recipe';
+import NoRecipe from './viewer/NoRecipe';
 
-const Viewer = () => (
-  <div className="viewer">
-    <RecipeHeader />
-    <div>
-      <hr />
-    </div>
-    <Row>
-      <Col sm={7}>
-        <Steps />
-      </Col>
-      <Col>
-        <Ingredients />
-      </Col>
-    </Row>
-  </div>
-);
+const Viewer = ({ recipeId }) =>
+  recipeId.cata({
+    Just: id => <Recipe recipeId={id} />,
+    Nothing: () => <NoRecipe />
+  });
 
-export default Viewer;
+const mapStateToProps = applySpec({ recipeId: getSelectedRecipeId });
+export default connect(mapStateToProps)(Viewer);

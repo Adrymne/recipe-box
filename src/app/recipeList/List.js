@@ -1,27 +1,28 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { applySpec } from 'ramda';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 import ListItem from './list/ListItem';
 import './List.css';
+import { getSelectedCheck, getRecipes } from 'store/selectors';
+import { createNewRecipe } from 'store/actions';
 
-const recipes = [
-  { id: 1, name: 'Spaghetti Bolegnese' },
-  { id: 2, name: 'Dim Sum' },
-  { id: 3, name: 'Japanese curry' },
-  { id: 4, name: 'Dish with a really long name so I can test overflow' }
-];
-const selectedRecipe = 2;
-
-const List = () => (
+const List = ({ isSelected, recipes, createNewRecipe }) => (
   <ListGroup className="recipe-list__list">
-    <ListGroupItem tag="button" action>
+    <ListGroupItem tag="button" action onClick={createNewRecipe}>
       <i>New recipe...</i>
     </ListGroupItem>
     {recipes.map(recipe => (
-      <ListGroupItem key={recipe.id} active={recipe.id === selectedRecipe}>
+      <ListGroupItem key={recipe.id} active={isSelected(recipe)}>
         <ListItem recipe={recipe} />
       </ListGroupItem>
     ))}
   </ListGroup>
 );
 
-export default List;
+const mapStateToProps = applySpec({
+  isSelected: getSelectedCheck,
+  recipes: getRecipes
+});
+const mapDispatchToProps = { createNewRecipe };
+export default connect(mapStateToProps, mapDispatchToProps)(List);
