@@ -34,6 +34,18 @@ export const getSelectedCheck = state => recipe =>
 // getRecipe :: (Id, State) -> Maybe Recipe
 export const getRecipe = (id, state) => Maybe.fromNullable(state.recipes[id]);
 
+// getRecipeField :: (Id, EditField, State) -> String
+export const getRecipeField = (id, field, state) =>
+  EditField.caseOn(
+    {
+      Name: recipe => (recipe ? recipe.name : ''),
+      Ingredients: recipe => (recipe ? recipe.ingredients : ''),
+      Steps: recipe => (recipe ? recipe.steps : '')
+    },
+    field,
+    state.recipes[id]
+  );
+
 // isEditing :: EditField -> State -> Bool
 export const isEditing = EditField.caseOn({
   Name: state => state.editing.name,

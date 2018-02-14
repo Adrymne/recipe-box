@@ -1,21 +1,13 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Button, Form, Input } from 'reactstrap';
 import './RecipeHeader.css';
 import { EditField } from 'types';
-import { getRecipe, isEditing } from 'store/selectors';
+import controlInput from './controlInput';
+import EditableField from './EditableField';
 
-const editHeader = ({ recipe }) => (
-  <Form inline className="viewer__header-edit">
-    <Input value={recipe.name} placeholder="Recipe name" />
-    <Button color="link">submit</Button>
-    <Button color="link">cancel</Button>
-  </Form>
-);
-
-const renderHeader = ({ recipe, startEdit }) => (
+const ViewHeader = ({ value, startEdit }) => (
   <h1>
-    {recipe.name || <i>Unnamed recipe</i>}
+    {value || <i>Unnamed recipe</i>}
     <small>
       <Button color="link" onClick={startEdit}>
         edit
@@ -24,14 +16,31 @@ const renderHeader = ({ recipe, startEdit }) => (
   </h1>
 );
 
-const RecipeHeader = ({ isEditing, ...props }) =>
-  isEditing ? editHeader(props) : renderHeader(props);
+const EditHeader = ({ value, onChange, updateRecipe, cancelEdit }) => (
+  <Form
+    inline
+    className="viewer__header-edit"
+    onSubmit={() => updateRecipe(value)}
+  >
+    <Input
+      value={value}
+      onChange={e => onChange(e.target.value)}
+      placeholder="Recipe name"
+    />
+    <Button color="link" type="submit">
+      submit
+    </Button>
+    <Button color="link" onClick={cancelEdit}>
+      cancel
+    </Button>
+  </Form>
+);
 
-const mapStateToProps = (state, { recipeId }) => ({
-  recipe: getRecipe(recipeId, state).cata({
-    Just: recipe => recipe,
-    Nothing: () => ({})
-  }),
-  isEditing: isEditing(EditField.Name, state)
-});
-export default connect(mapStateToProps)(RecipeHeader);
+export default ({ recipeId }) => (
+  <EditableField
+    recipeId={recipeId}
+    field={EditField.Name}
+    ViewComponent={ViewHeader}
+    EditComponent={controlInput(EditHeader)}
+  />
+);

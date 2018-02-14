@@ -1,4 +1,5 @@
 import subject from './recipes';
+import { EditField } from 'types';
 import { createNewRecipe, deleteRecipe, updateRecipe } from 'store/actions';
 
 it('CREATE_NEW_RECIPE', () => {
@@ -25,7 +26,7 @@ it('DELETE_RECIPE', () => {
 
 it('UPDATE_RECIPE', () => {
   const state = { id: { name: 'blah', ingredients: 'blah blah' } };
-  const action = updateRecipe('id', 'name', 'new name');
+  const action = updateRecipe('id', EditField.Name, 'new name');
 
   const result = subject(state, action);
 
