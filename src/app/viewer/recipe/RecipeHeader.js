@@ -2,7 +2,6 @@ import React from 'react';
 import { Button, Form, Input } from 'reactstrap';
 import './RecipeHeader.css';
 import { EditField } from 'types';
-import controlInput from 'components/controlInput';
 import editableRecipeField from './editableRecipeField';
 
 const ViewHeader = ({ value, startEdit }) => (
@@ -36,8 +35,4 @@ const EditHeader = ({ value, onChange, updateRecipe, cancelEdit }) => (
   </Form>
 );
 
-export default editableRecipeField(
-  EditField.Name,
-  ViewHeader,
-  controlInput(EditHeader)
-);
+export default editableRecipeField(EditField.Name, ViewHeader, EditHeader);

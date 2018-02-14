@@ -2,8 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getRecipeField, isEditing } from 'store/selectors';
 import * as actions from 'store/actions';
+import controlInput from 'components/controlInput';
 
 export default (field, ViewComponent, EditComponent) => {
+  const ControlledEditComponent = controlInput(EditComponent);
+
   const EditableField = ({
     isEditing,
     value,
@@ -12,13 +15,14 @@ export default (field, ViewComponent, EditComponent) => {
     cancelEdit
   }) =>
     isEditing ? (
-      <EditComponent
+      <ControlledEditComponent
         value={value}
+        field={field}
         updateRecipe={updateRecipe}
         cancelEdit={cancelEdit}
       />
     ) : (
-      <ViewComponent value={value} startEdit={startEdit} />
+      <ViewComponent value={value} field={field} startEdit={startEdit} />
     );
 
   const mapStateToProps = (state, { recipeId }) => ({
