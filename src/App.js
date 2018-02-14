@@ -2,6 +2,7 @@ import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import RecipeList from './app/RecipeList';
 import Viewer from './app/Viewer';
+import SourceLink from './app/SourceLink';
 import './App.css';
 
 const App = () => (
@@ -14,6 +15,7 @@ const App = () => (
         <Viewer />
       </Col>
     </Row>
+    <SourceLink />
   </Container>
 );
 
