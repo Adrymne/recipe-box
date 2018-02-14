@@ -2,11 +2,13 @@ import React from 'react';
 import { Row, Col } from 'reactstrap';
 import './Recipe.css';
 import { EditField } from 'types';
-import RecipeHeader from './recipe/RecipeHeader';
+import Header from './recipe/Header';
+import EditHeader from './recipe/EditHeader';
 import TextArea from './recipe/TextArea';
 import EditTextArea from './recipe/EditTextArea';
 import editableRecipeField from './recipe/editableRecipeField';
 
+const RecipeHeader = editableRecipeField(EditField.Name, Header, EditHeader);
 const Steps = editableRecipeField(EditField.Steps, TextArea, EditTextArea);
 const Ingredients = editableRecipeField(
   EditField.Ingredients,
