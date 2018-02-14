@@ -9,6 +9,7 @@ const EditHeader = ({ value, onChange, updateRecipe, cancelEdit }) => (
     onSubmit={() => updateRecipe(value)}
   >
     <Input
+      autoFocus
       value={value}
       onChange={e => onChange(e.target.value)}
       placeholder="Recipe name"

@@ -25,6 +25,7 @@ const EditTextArea = ({ value, field, onChange, updateRecipe, cancelEdit }) => (
       </small>
     </h3>
     <Input
+      autoFocus
       type="textarea"
       value={value}
       onChange={e => onChange(e.target.value)}
