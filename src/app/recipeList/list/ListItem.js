@@ -7,7 +7,13 @@ import { selectRecipe, deleteRecipe } from 'store/actions';
 const ListItem = ({ recipe, selectRecipe, deleteRecipe }) => (
   <div className="recipe-list__list-item" onClick={selectRecipe}>
     <div>{recipe.name || <i>Unnamed recipe</i>}</div>
-    <Button color="danger" onClick={deleteRecipe}>
+    <Button
+      color="danger"
+      onClick={e => {
+        e.stopPropagation();
+        deleteRecipe();
+      }}
+    >
       {'\u2717'}
     </Button>
   </div>
