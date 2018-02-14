@@ -23,3 +23,9 @@ export const cancelEdit = field => ({ type: CANCEL_EDIT, payload: field });
 
 export const DELETE_RECIPE = 'DELETE_RECIPE';
 export const deleteRecipe = id => ({ type: DELETE_RECIPE, payload: id });
+
+export const UPDATE_SEARCH = 'UPDATE_SEARCH';
+export const updateSearch = searchString => ({
+  type: UPDATE_SEARCH,
+  payload: searchString
+});

@@ -1,5 +1,5 @@
-import Maybe from 'data.maybe';
-import { toPairs, map } from 'ramda';
+import fuzzysearch from 'fuzzysearch';
+import { toPairs, map, converge, ifElse, filter } from 'ramda';
 import { EditField } from 'types';
 /*
 alias Id = String
@@ -13,16 +13,32 @@ EditField = Name | Ingredients | Steps
 State :: {
   recipes :: Dict Id Recipe,
   selected :: Maybe Id,
-  editing :: Dict EditField Bool
+  editing :: Dict EditField Bool,
+  search :: String
 }
+
+RecipeList = [{ id :: Id } & Recipe]
 */
 
 // getSelectedRecipeId :: State -> Maybe Id
 export const getSelectedRecipeId = state => state.selected;
 
-// getRecipes :: State -> [{ id :: Id } & Recipe]
-export const getRecipes = state =>
+// getSearchString :: State -> String
+export const getSearchString = state => state.search;
+
+// getRecipes :: State -> RecipeList
+const getRecipes = state =>
   map(([id, recipe]) => ({ id, ...recipe }), toPairs(state.recipes));
+// searchStringExists :: (String, RecipeList) -> Bool
+const searchStringExists = ss => !!ss;
+// filterBySearch :: (String, RecipeList) -> RecipeList
+const filterBySearch = (searchString, recipes) =>
+  filter(({ name }) => fuzzysearch(searchString, name), recipes);
+// getRecipeList :: State -> [{ id :: Id } & Recipe]
+export const getRecipeList = converge(
+  ifElse(searchStringExists, filterBySearch, (_, recipes) => recipes),
+  [getSearchString, getRecipes]
+);
 
 // getSelectedCheck :: State -> Recipe -> Bool
 export const getSelectedCheck = state => recipe =>

@@ -4,7 +4,7 @@ import { applySpec } from 'ramda';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 import ListItem from './list/ListItem';
 import './List.css';
-import { getSelectedCheck, getRecipes } from 'store/selectors';
+import { getSelectedCheck, getRecipeList } from 'store/selectors';
 import { createNewRecipe } from 'store/actions';
 
 const List = ({ isSelected, recipes, createNewRecipe }) => (
@@ -22,7 +22,7 @@ const List = ({ isSelected, recipes, createNewRecipe }) => (
 
 const mapStateToProps = applySpec({
   isSelected: getSelectedCheck,
-  recipes: getRecipes
+  recipes: getRecipeList
 });
 const mapDispatchToProps = { createNewRecipe };
 export default connect(mapStateToProps, mapDispatchToProps)(List);

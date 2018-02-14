@@ -5,6 +5,7 @@
   "dependencies": {
     "bootstrap": "^4.0.0",
     "data.maybe": "^1.2.2",
+    "fuzzysearch": "^1.0.3",
     "marked": "^0.3.12",
     "ramda": "^0.25.0",
     "react": "^16.2.0",
