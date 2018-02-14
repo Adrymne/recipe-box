@@ -1,6 +1,6 @@
 import fuzzysearch from 'fuzzysearch';
 import { toPairs, map, converge, ifElse, filter } from 'ramda';
-import { EditField } from 'types';
+import { EditField, Maybe } from 'types';
 /*
 alias Id = String
 Recipe = {
@@ -41,11 +41,14 @@ export const getRecipeList = converge(
 );
 
 // getSelectedCheck :: State -> Recipe -> Bool
-export const getSelectedCheck = state => recipe =>
-  state.selected.cata({
-    Just: selectedId => recipe.id === selectedId,
-    Nothing: () => false
-  });
+export const getSelectedCheck = state =>
+  Maybe.caseOn(
+    {
+      Just: (selectedId, recipe) => recipe.id === selectedId,
+      Nothing: () => false
+    },
+    state.selected
+  );
 
 // getRecipeField :: (Id, EditField, State) -> String
 export const getRecipeField = (id, field, state) =>
