@@ -2,9 +2,11 @@
   "name": "recipe-box",
   "version": "1.0.0",
   "private": true,
+  "homepage": "https://adrymne.github.io/recipe-box",
   "dependencies": {
     "bootstrap": "^4.0.0",
     "fuzzysearch": "^1.0.3",
+    "gh-pages": "^1.1.0",
     "marked": "^0.3.12",
     "ramda": "^0.25.0",
     "react": "^16.2.0",
@@ -17,6 +19,8 @@
     "uuid": "^3.2.1"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
